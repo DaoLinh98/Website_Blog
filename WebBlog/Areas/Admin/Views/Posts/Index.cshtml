@@ -1,0 +1,69 @@
+﻿@using PagedList.Core.Mvc;
+@model PagedList.Core.IPagedList<WebBlog.Models.Post>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Quản lý Tin Đăng</h1>
+<hr />
+<p>
+    <a style="float:right" asp-action="Create" class="btn btn-success">New Create</a>
+</p>
+<table class="table table-active">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Danh Mục</th>
+            <th>Trạng Thái</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            string url = $"/{item.Alias}.html";
+        <tr>
+            <td>
+                @item.PostId
+            </td>
+            <td>
+                <a style="text-decoration: none ;color:orange" href="/@url">@item.Title</a>
+            </td>
+            <td>
+                <a style="text-decoration: none ;color:orange" href="/@item.Cat.Alias"> @item.Cat.CatName
+                </a>
+                
+            </td>
+            <td>
+
+                @if (item.Published == true)
+                {
+                    <span class="btn-primary badge badge-primary">Public</span>
+                }
+                else
+                {
+                    <span class="btn-danger badge badge-primary">NON-Public</span>
+
+                }
+            </td>
+            <td>
+                <a asp-area="Admin" asp-controller="Posts" asp-action="Edit" asp-route-id="@item.PostId" class="btn btn-success">Edit</a>
+                <a href="@url " target="_blank" class="btn btn-primary">Details</a>
+                <a asp-area="Admin" asp-controller="Posts" asp-action="Delete" asp-route-id="@item.PostId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@*PAGING HERE call*@
+<div aria-label="Page navigation example">
+    <ul style="float:right" class="pagination">
+        <pager class="pager-container" options="@PagedListRenderOptions.Bootstrap4PageNumbersOnly" list="@Model" asp-area="Admin" asp-controller="Posts" asp-action="Index"></pager>
+    </ul>
+
+</div>
+@*PAGING HERE call*@

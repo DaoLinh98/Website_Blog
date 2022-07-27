@@ -1,0 +1,59 @@
+﻿@model PagedList.Core.IPagedList<WebBlog.Models.Post>
+@using PagedList.Core.Mvc;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Bài viết Bạn quan tâm</h1>
+<p></p>
+<hr />
+
+@foreach (var post in Model)
+{
+    <div  class="media border-bottom mb-3 pb-3">
+        <img class="mr-3 w-25" src="~/@post.Thumb" alt="Generic placeholder image">
+        <div class="media-body">
+            <h5 class="mt-0">
+                <a asp-controller="Home" asp-action="Detail" asp-route-id="@post.PostId">
+                    @post.Title
+                </a>
+            </h5>
+            <div style="font-size:11px">     @post.ShortContents...</div>
+       
+            <div>
+                Chủ đề:
+                <strong class="text-danger">
+                    @post.Cat.CatName
+                </strong>
+            </div>
+            <div class="author-row">
+                Tác giả: <strong>@post.Author</strong> | 
+                Ngày cập nhật: <strong>@post.CreateDate</strong>
+
+            </div>
+        </div>
+    </div>
+}
+
+@*PAGING HERE call*@
+<div style="color: #212529;; border-radius:10px; height: 38px;
+     padding: 0 31px; aria-label="Page navigation example">
+    <ul style="float:right" class="pagination">
+        <pager class="pager-container" options="@PagedListRenderOptions.Bootstrap4PageNumbersOnly" list="@Model" asp-controller="Home" asp-action="Index"></pager>
+    </ul>
+</div>
+@*PAGING HERE call*@
+
+@section Sidebar{
+    <h5>Danh mục khám phá</h5>
+    <hr />
+
+    <div class="col-md-12" style="">
+        <a class="border-bottom mb-2" target="_blank" href="https://tiki.vn/"><img style="max-width:350px; height: auto;" src="https://salt.tikicdn.com/ts/brickv2og/3c/6f/4c/75724687ac222fa40e551d55f94edf54.png" /></a>
+        <a class="border-bottom mb-2" target="_blank" href="https://mevivu.com/dich-vu-thiet-ke-hinh-anh-noi-chung-quang-cao-banner-anh-quang-cao-facebook/"><img style="max-width:350px; height: auto;" src="https://4.bp.blogspot.com/-A3fURjF2dB8/WEfeEM5Gy9I/AAAAAAAAC0M/mlBJKiqfxlsY-QIFHi9WKIYTjKxXiDMlACLcB/s400/ads500x500_facebook.png" /></a>
+
+    </div>
+
+}
+

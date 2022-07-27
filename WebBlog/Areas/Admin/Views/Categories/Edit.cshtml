@@ -1,0 +1,111 @@
+﻿@model WebBlog.Models.Category
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Edit Category</h1>
+<hr />
+<div style="margin:auto" class=" row">
+    <div class="col col-6">
+        <form asp-action="Edit" asp-route-id="@Model.CatId" enctype="multipart/form-data">
+            <input type="hidden" asp-for="CatId" />
+            <div class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col col-6 form-group">
+                    <label asp-for="CatName" class="control-label"></label>
+                    <input asp-for="CatName" class="form-control" />
+                    <span asp-validation-for="CatName" class="text-danger"></span>
+                </div>
+                <div class="col col-6  form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="col col-12 form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea id="des" asp-for="Description" class="form-control">  </textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                @*<div class="col col-6 form-group">
+            <label asp-for="Alias" class="control-label"></label>
+            <input asp-for="Alias" class="form-control" />
+            <span asp-validation-for="Alias" class="text-danger"></span>
+        </div>*@
+                <div class="col col-6 form-group">
+                    <label asp-for="Parents" class="control-label"></label>
+                    <select class="form-control form-select" asp-for="Parents" asp-items="@ViewBag.DanhMucGoc" required>
+                        <option value="0" selected>Danh Mục Gốc</option>
+                    </select>
+                    @*<input asp-for="Parents" class="form-control" />
+            <span asp-validation-for="Parents" class="text-danger"></span>*@
+                </div>
+                <div class="col col-6 form-group">
+                    <label asp-for="Oedering" class="control-label"></label>
+                    <input type="number" value="0" asp-for="Oedering" class="form-control" />
+                    <span asp-validation-for="Oedering" class="text-danger"></span>
+                </div>
+
+                <div class="col col-6 form-group">
+                    <label asp-for="Levers" class="control-label"></label>
+                    <input asp-for="Levers" class="form-control" />
+                    <span asp-validation-for="Levers" class="text-danger"></span>
+                </div>
+                <div class="col col-6 form-group">
+                    <label asp-for="MetaDesc" class="control-label"></label>
+                    <input asp-for="MetaDesc" class="form-control" />
+                    <span asp-validation-for="MetaDesc" class="text-danger"></span>
+                </div>
+                <div class="col col-6 form-group">
+                    <label asp-for="MetaKey" class="control-label"></label>
+                    <input asp-for="MetaKey" class="form-control" />
+                    <span asp-validation-for="MetaKey" class="text-danger"></span>
+                </div>
+                <div style="margin:auto" class="col col-6 form-group form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" asp-for="Published" /> @Html.DisplayNameFor(model => model.Published)
+                    </label>
+                </div>
+                <div class="col col-4 form-group">
+                    <label asp-for="Thumb" class="control-label"></label>
+                    <input name="fThumb" type="file" asp-for="Thumb" class="form-control-file" />
+                    @* <span asp-validation-for="Thumb" class="text-danger"></span>*@
+                </div>
+
+
+                <div class="col col-4 form-group">
+                    <label asp-for="Icon" class="control-label"></label>
+                    <input name="fIcon" type="file" asp-for="Icon" class="form-control-file" />
+                    @*<span asp-validation-for="Icon" class="text-danger"></span>*@
+                </div>
+                <div class="col col-4 form-group">
+                    <label asp-for="Cover" class="control-label"></label>
+                    <input name="fCover" type="file" asp-for="Cover" class="form-control-file" />
+                    @*<span asp-validation-for="Cover" class="text-danger"></span>*@
+                </div>
+
+                <hr />
+                <div class="col col-12 form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-danger">Back to List</a>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/AdminAssets/ckeditor/ckeditor.js"></script>
+    <script src="~/AdminAssets/ckeditor/adapters/jquery.js"></script>
+    <script>
+
+        CKEDITOR.replace('des');
+
+    </script>
+}

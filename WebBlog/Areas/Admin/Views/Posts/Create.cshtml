@@ -1,0 +1,108 @@
+﻿@model WebBlog.Models.Post
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Create Post</h1>
+
+
+<hr />
+<div style="margin:auto" class=" row row-cols-1">
+    <div class="col col-8">
+        <form asp-action="Create">
+            <div class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-6 form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="ShortContents" class="control-label"></label>
+                    <input asp-for="ShortContents" class="form-control" />
+                    <span asp-validation-for="ShortContents" class="text-danger"></span>
+                </div>
+                <div class="col-12 form-group">
+
+
+                    <label asp-for="Contents" class="control-label"></label>
+                    <textarea id="content" asp-for="Contents" class="form-control">  </textarea>
+                    <span asp-validation-for="Contents" class="text-danger"></span>
+
+
+
+
+
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="Thumb" class="control-label"></label>
+                    <input asp-for="Thumb" class="form-control" />
+                    <span asp-validation-for="Thumb" class="text-danger"></span>
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="Published" class="control-label"></label>
+                    <input asp-for="Published" class="form-control" />
+                    <span asp-validation-for="Published" class="text-danger"></span>
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="Alias" class="control-label"></label>
+                    <input asp-for="Alias" class="form-control" />
+                    <span asp-validation-for="Alias" class="text-danger"></span>
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="CreateDate" class="control-label"></label>
+                    <input asp-for="CreateDate" class="form-control" />
+                    <span asp-validation-for="CreateDate" class="text-danger"></span>
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="AccountId" class="control-label"></label>
+                    <select asp-for="AccountId" class="form-control" asp-items="ViewBag.AccountId"></select>
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="Tags" class="control-label"></label>
+                    <input asp-for="Tags" class="form-control" />
+                    <span asp-validation-for="Tags" class="text-danger"></span>
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="CatId" class="control-label"></label>
+                    <select asp-for="CatId" class="form-control" asp-items="ViewBag.CatId"></select>
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="IsHot" class="control-label"></label>
+                    <input asp-for="IsHot" class="form-control" />
+                    <span asp-validation-for="IsHot" class="text-danger"></span>
+                </div>
+                <div class="col-6 form-group mb-3">
+                    <label asp-for="IsNewfeed" class="control-label"></label>
+                    <input asp-for="IsNewfeed" class="form-control" />
+                    <span asp-validation-for="IsNewfeed" class="text-danger"></span>
+                </div>
+
+      
+                <div class="col col-12 form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-danger">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+
+    <script src="~/AdminAssets/ckeditor/ckeditor.js"></script>
+    <script src="~/AdminAssets/ckeditor/adapters/jquery.js"></script>
+    <script>
+
+        CKEDITOR.replace('content');
+
+    </script>
+}
+
+

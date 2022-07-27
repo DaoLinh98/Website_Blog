@@ -1,0 +1,19 @@
+﻿@model WebBlog.Models.Post
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<div class="">
+    <h1>@Model.Title</h1>
+    <div style="font-size:12px">
+        @Model.ShortContents...
+    </div>
+    <div>
+        <i>Cập nhật: <strong>@Model.CreateDate</strong></i> | 
+        Tác giả: <strong>@Model.Author</strong>
+    </div>
+    <hr />  
+    @Html.Raw(Model.Contents)
+</div>
+

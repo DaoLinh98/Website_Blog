@@ -1,0 +1,71 @@
+﻿@using PagedList.Core.Mvc;
+@model PagedList.Core.IPagedList<WebBlog.Models.Account>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Quản lý Tài Khoản</h1>
+<hr />
+<p>
+    <a style="float:right" asp-area="Admin" asp-controller="Accounts" asp-action="Create" class="btn btn-success">New Create</a>
+</p>
+<table class="table table-active">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Họ Và Tên</th>
+            <th>Trạng Thái</th>
+            <th>Quyền Truy Cập</th>
+
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.AccountId
+            </td>
+            <td>
+                <p>Họ Và tên: @item.FullName</p>
+                <p>Email: @item.Email</p>
+                <p>Phone: @item.Phone</p>
+                <p>Last Login: @item.LastLogin</p>
+            </td>
+
+            <td>
+                @if (item.Active == true)
+                {
+                    <span class="btn-primary badge badge-primary">Active</span>
+                }
+                else
+                {
+                    <span class="btn-danger badge badge-primary">Block</span>
+
+                }
+            </td>
+            <td>
+                @item.Role.RoleDescript
+            </td>
+
+            <td>
+                <a asp-area="Admin" asp-controller="Accounts" asp-action="Edit" asp-route-id="@item.AccountId" class="btn btn-success">Edit</a>
+                <a asp-area="Admin" asp-controller="Accounts" asp-action="Details" asp-route-id="@item.AccountId" class="btn btn-primary">Details</a>
+                <a asp-area="Admin" asp-controller="Accounts" asp-action="Delete" asp-route-id="@item.AccountId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@*PAGING HERE call*@
+<div aria-label="Page navigation example">
+    <ul style="float:right" class="pagination">
+        <pager class="pager-container" options="@PagedListRenderOptions.Bootstrap4PageNumbersOnly" list="@Model" asp-area="Admin" asp-controller="Accounts" asp-action="Index"></pager>
+    </ul>
+
+</div>
+@*PAGING HERE call*@
